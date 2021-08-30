@@ -1,0 +1,53 @@
+
+     public static DoublyLinkedListNode reverse(DoublyLinkedListNode llist) {
+    if(llist==null){
+        return null;
+    }
+    else if(llist.next==null){
+        return llist;
+    }
+    else{
+        DoublyLinkedListNode temp = llist;
+        ArrayDeque<DoublyLinkedListNode> stack = new ArrayDeque<>();
+        while(temp.next!=null){
+            stack.push(temp);
+            temp = temp.next;
+        }
+        llist = temp;
+        while(!stack.isEmpty()){
+            temp.next = stack.pop();
+            temp.next.prev= temp;
+            
+            temp = temp.next;
+        }
+        temp.next=null;
+        return llist;
+    }
+    
+
+    }
+
+class Result {
+
+    /*
+     * Complete the 'reverse' function below.
+     *
+     * The function is expected to return an INTEGER_DOUBLY_LINKED_LIST.
+     * The function accepts INTEGER_DOUBLY_LINKED_LIST llist as parameter.
+     */
+
+    /*
+     * For your reference:
+     *
+     * DoublyLinkedListNode {
+     *     int data;
+     *     DoublyLinkedListNode next;
+     *     DoublyLinkedListNode prev;
+     * }
+     *
+     */
+
+   
+
+}
+

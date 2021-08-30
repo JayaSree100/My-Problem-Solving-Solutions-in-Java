@@ -1,0 +1,48 @@
+
+     public static SinglyLinkedListNode reverse(SinglyLinkedListNode llist) {
+    // Write your code here
+    if(llist.next==null){
+        return llist;
+    }
+    Stack<SinglyLinkedListNode> s = new Stack<>();
+    SinglyLinkedListNode temp = llist;
+    while(temp.next != null){
+        s.push(temp);
+        temp =temp.next;
+    }
+    llist = temp;
+    while(!s.isEmpty()){
+        temp.next = s.peek();
+        s.pop();
+        temp = temp.next;
+    }
+    temp.next = null;
+    
+    return llist;
+    
+   
+    }
+
+class Result {
+
+    /*
+     * Complete the 'reverse' function below.
+     *
+     * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
+     * The function accepts INTEGER_SINGLY_LINKED_LIST llist as parameter.
+     */
+
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+
+   
+
+}
+

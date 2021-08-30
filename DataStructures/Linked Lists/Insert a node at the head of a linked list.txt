@@ -1,0 +1,31 @@
+
+
+    // Complete the insertNodeAtHead function below.
+
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
+        
+      SinglyLinkedListNode temp = llist;
+      SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+      
+      if(temp == null){
+          llist = newNode;
+          llist.next = null;
+         
+      }
+      else{
+          newNode.next = temp;
+          llist = newNode;
+        
+      }
+ return llist;
+    }
+

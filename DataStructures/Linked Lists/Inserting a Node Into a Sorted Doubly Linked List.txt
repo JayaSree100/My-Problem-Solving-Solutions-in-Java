@@ -1,0 +1,52 @@
+
+    public static DoublyLinkedListNode sortedInsert(DoublyLinkedListNode llist, int data) {
+    DoublyLinkedListNode node = new DoublyLinkedListNode(data);
+    DoublyLinkedListNode head = llist;
+    if(data < head.data){
+        head.prev = node;
+        node.next = head;
+        return node;
+    }
+    DoublyLinkedListNode temp = head;
+    while(temp.next!=null){
+        if(data<temp.next.data){
+           node.next= temp.next;
+           node.prev = temp;
+           temp.next = node;
+           temp.next.prev = node;
+           return head;
+        }
+        temp = temp.next;
+    }
+    temp.next = node;
+    node.prev = temp;
+    return head;
+    
+
+}
+
+class Result {
+
+    /*
+     * Complete the 'sortedInsert' function below.
+     *
+     * The function is expected to return an INTEGER_DOUBLY_LINKED_LIST.
+     * The function accepts following parameters:
+     *  1. INTEGER_DOUBLY_LINKED_LIST llist
+     *  2. INTEGER data
+     */
+
+    /*
+     * For your reference:
+     *
+     * DoublyLinkedListNode {
+     *     int data;
+     *     DoublyLinkedListNode next;
+     *     DoublyLinkedListNode prev;
+     * }
+     *
+     */
+
+    
+}
+

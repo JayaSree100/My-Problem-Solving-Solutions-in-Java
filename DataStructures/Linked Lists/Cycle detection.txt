@@ -1,0 +1,33 @@
+
+
+    // Complete the hasCycle function below.
+
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    static boolean hasCycle(SinglyLinkedListNode head) {
+        if(head == null || head.next == null){
+            return false;
+        }
+        Stack<SinglyLinkedListNode> s = new Stack<>();
+        SinglyLinkedListNode temp = head;
+        while(temp != null){
+            if(!s.contains(temp)){
+                s.push(temp);
+            }
+            else{
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+
+
+    }
+

@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> list = new ArrayList<>();
+        int numOfQueries = sc.nextInt();
+        sc.nextLine();
+        while(numOfQueries!=0){
+            list.add(sc.nextLine());
+            numOfQueries--;
+        }
+        ArrayDeque<Integer> stack1 = new ArrayDeque<>();
+         ArrayDeque<Integer> stack2 = new ArrayDeque<>();
+         
+        for(String s : list){
+            char c = s.charAt(0);
+            switch(c){
+                case '1':
+                
+                    stack1.push(Integer.parseInt(s.substring(2)));
+                break;
+                
+                case '2':
+                if(stack2.isEmpty()){
+                while(!stack1.isEmpty()){
+                    stack2.push(stack1.pop());
+                }
+                }
+                if(!stack2.isEmpty()){
+                stack2.pop();
+                }
+                
+                break;
+                
+                case '3':
+                if(stack2.isEmpty()){
+                while(!stack1.isEmpty()){
+                    stack2.push(stack1.pop());
+                }
+                 System.out.println(stack2.peek());
+                }
+               else{
+                System.out.println(stack2.peek());
+               }
+                break;
+                
+               
+                
+                 
+            }
+        }
+        
+    }
+}
