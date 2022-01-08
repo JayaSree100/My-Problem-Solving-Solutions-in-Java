@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        scan.useDelimiter("\\Z");
+        String s = scan.next().trim();
+        // Write your code here.
+       if (s.trim().length()==0 || s.trim().length()>400000)
+    {
+        System.out.println(0);
+        return;
+    }
+       else{
+           String[] ab = s.split("[ !,?.\\_'@]+");
+           System.out.println(ab.length);
+           for(String x : ab){
+               System.out.println(x);
+           }
+      
+        
+    }
+    
+}
+}
+
