@@ -1,1 +1,1 @@
-# My-HackerRank-Problem-Solving-Solutions-in-Java
+# My-Problem-Solving-Solutions-in-Java
