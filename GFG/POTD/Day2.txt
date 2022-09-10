@@ -1,0 +1,9 @@
+Given n balls . All of them are initially  uncolored . You have to color the balls with two colors RED and BLUE such that there can be atmost 2 positions where a RED ball is touching BLUE ball or vice versa. You have to color all the balls.Find the number of ways in which balls can be colored.
+
+
+class Solution {
+    static long noOfWays(long n){
+        // code here
+        return (n*n)-n+2;
+    }
+}
