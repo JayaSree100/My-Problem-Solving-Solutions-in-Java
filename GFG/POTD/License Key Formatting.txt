@@ -1,0 +1,40 @@
+//{ Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(in.readLine());
+        while(t-- > 0){
+            String s = in.readLine();
+            int k = Integer.parseInt(in.readLine());
+            
+            Solution ob = new Solution();
+            System.out.println(ob.ReFormatString(s, k));
+        }
+    }
+}
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solution{
+    static String ReFormatString(String S, int K){
+        
+        S= S.toUpperCase();
+        S=S.replace("-","");
+        StringBuilder res = new StringBuilder(S);
+        
+        for(int i= S.length()-K; i>0;i=i-K){
+            res.insert(i,"-");
+        }
+        
+        return res.toString();
+        
+    }
+}
