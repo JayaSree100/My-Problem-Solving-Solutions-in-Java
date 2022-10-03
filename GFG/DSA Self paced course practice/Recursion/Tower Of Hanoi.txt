@@ -1,0 +1,63 @@
+//{ Driver Code Starts
+// Initial Template for Java
+
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+class Recursion {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int T = sc.nextInt();//total testcases
+        while (T-- > 0) {
+            Hanoi obj = new Hanoi();
+            int N;
+            
+            //taking input N
+            N = sc.nextInt();
+
+            //calling toh() method 
+            System.out.println(obj.toh(N, 1, 3, 2));
+        }
+    }
+}
+
+
+
+
+
+
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+
+// avoid space at the starting of the string in "move disk....."
+class Hanoi {
+
+    public long toh(int N, int from, int to, int aux) {
+        // first let us find the num of moves using the formnula = 2^n-1
+        long numOfMoves = (long)(Math.pow(2,N)-1);
+        
+        // print statement - "move disk n-1 from rod x to rod y"
+        
+        // base case
+        if(N==0){
+            return numOfMoves;
+        }
+        // let us rename the given rods for ease
+        //int A = from, B = to, C = aux;
+        //first move the n-1 rods from 'A' to 'B' using 'C'
+        toh(N-1,from,aux,to);
+        
+        // then move the nth rod from 'A' to 'C'
+        System.out.println("move disk "+N+" from rod "+from+" to rod "+to);
+        
+        // finally move the n-1 rods from 'B' to 'C' using A
+        toh(N-1,aux,to,from);
+        
+       return numOfMoves;
+    }
+}
