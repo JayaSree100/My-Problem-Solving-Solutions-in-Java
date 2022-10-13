@@ -1,0 +1,92 @@
+//{ Driver Code Starts
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class gfg
+{
+    
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        
+        while(t-- >0)
+        {
+            int hash_size = sc.nextInt();
+            int array_size = sc.nextInt();
+            
+            int arr[] = new int[array_size];
+            for(int i = 0; i < array_size; i++)
+             arr[i] = sc.nextInt();
+             
+            // int hash_table[] = new int[hash_size];
+            // for(int i = 0; i < hash_size; i++)
+            //     hash_table[i] = -1;
+            Solution obj = new Solution();
+            int hash_table[] = obj.linearProbing(hash_size, arr, array_size);
+            
+            for(int i = 0; i <hash_size; i++)
+                System.out.print(hash_table[i] + " ");
+             
+            System.out.println();
+             
+        }
+    }
+    
+}
+// } Driver Code Ends
+
+
+class Solution{
+    //Function to fill the array elements into a hash table 
+    //using Linear Probing to handle collisions.
+    int[] linearProbing(int hash_size, int arr[], int sizeOfArray)
+    {
+       // create the hash table
+       int[] table = new int[hash_size];
+       // fill this array with -1
+       Arrays.fill(table,-1);
+       
+       // corner cases
+       // 
+       
+       // traverse through each ele of array to put it in the table
+       for(int i = 0;i<arr.length; i++){
+           int key = arr[i]%hash_size;
+           
+           // check at table index=key if ele is already present, continue wth the nxt ele
+           if(table[key]==arr[i]){
+               continue;
+           }
+           // if no entry at key position
+           else if(table[key]==-1){
+               // add the ele at that pos
+               table[key]=arr[i];
+           }
+           // nxt case if the pos is occupied by another ele
+           else{
+               // now cal the nxt empty position
+               for( int j=1;j<hash_size;j++){
+                   int newInd = (key+j)%hash_size;
+                   if(table[newInd]==arr[i]){
+                       break;
+                   }
+                   else if(table[newInd]== -1){
+                       table[newInd]= arr[i];
+                       // if the break is not added here; for 1st colllision ele, it gets added at all -1 indexes 
+                       break;
+                   }
+                   else{
+                       continue;
+                   }
+               }
+               
+               
+           }
+           
+       }
+       return table;
+    }
+}
