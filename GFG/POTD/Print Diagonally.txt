@@ -1,0 +1,79 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            
+            int matrix[][] = new int[n][n];
+            
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < n; j++)
+                 matrix[i][j] = sc.nextInt();
+            }
+            Solution ob = new Solution();
+            ArrayList<Integer> ans = ob.downwardDigonal(n, matrix);
+            for (Integer val: ans) 
+                System.out.print(val+" "); 
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution{
+    static ArrayList<Integer> downwardDigonal(int N, int A[][])
+    {
+        // code here 
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        /*
+        exaple for 3x3 matrix
+        1st colum traversal pairs ( all columns of 1st row) are 
+        (0,0) (0,1) (0,2)
+              (1,0) (1,1)
+                    (2,0)
+                    
+        2nd row traversal pairs ( from 2nd row to last) are 
+        (1,2) (2,2) 
+        (2,1) 
+               
+        
+        */
+        //1st traverse through all the elements of 1st row 
+        for(int j=0;j<N;j++){
+            int row=0;
+            int col=j;
+            while(col>=0 && row<N){
+                ans.add(A[row][col]);
+                row++;
+                col--;
+            }
+        }
+        //now rows are changed from 1 to N-1 (inc), so col decreases => N-1 to 1
+        for(int i=1;i<N;i++){
+            int row=i;
+            int col=N-1;
+            while(row<N && col>=1){
+                ans.add(A[row][col]);
+                row++;
+                col--;
+            }
+            
+        }
+        
+        return ans;
+    }
+}
