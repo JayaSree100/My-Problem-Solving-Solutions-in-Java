@@ -1,0 +1,78 @@
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int r = sc.nextInt();
+            int c = sc.nextInt();
+            
+            int matrix[][] = new int[r][c];
+            
+            for(int i = 0; i < r; i++)
+            {
+                for(int j = 0; j < c; j++)
+                 matrix[i][j] = sc.nextInt();
+            }
+            Solution ob = new Solution();
+            ArrayList<Integer> ans = ob.spirallyTraverse(matrix, r, c);
+            for (Integer val: ans) 
+                System.out.print(val+" "); 
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+class Solution
+{
+    //Function to return a list of integers denoting spiral traversal of matrix.
+    static ArrayList<Integer> spirallyTraverse(int matrix[][], int r, int c)
+    {
+        // code here
+        int dir=0; // 0(right) 1(down) 2(left) 3(up)
+        ArrayList<Integer> ans = new ArrayList<>();
+        int top=0,bottom=r-1,left=0,right=c-1;
+        while(top<=bottom && left<=right){
+            
+            if(dir==0){
+                for(int col=left;col<=right;col++){
+                    //System.out.println("dir=0: left="+left+" right="+right+" top="+top);
+                    ans.add(matrix[top][col]);
+                    
+                }
+                top++;
+            }
+            else if(dir==1){
+                for(int row=top;row<=bottom;row++){
+                    ans.add(matrix[row][right]);
+                    
+                }
+                right--;
+            }
+            else if(dir==2){
+                for(int col=right;col>=left;col--){
+                    ans.add(matrix[bottom][col]);
+                    
+                }
+                bottom--;
+            }
+            else if(dir==3){
+                for(int row=bottom;row>=top;row--){
+                    ans.add(matrix[row][left]);
+                    
+                }
+                left++;
+            }
+            dir=(dir+1)%4;
+        }
+        return ans;
+    }
+}

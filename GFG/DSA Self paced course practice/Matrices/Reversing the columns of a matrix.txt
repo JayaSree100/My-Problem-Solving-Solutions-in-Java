@@ -1,0 +1,75 @@
+//{ Driver Code Starts
+import java.io.*;
+import java.util.*;
+class GFG
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n1 = sc.nextInt();
+            int m1 = sc.nextInt();
+            
+            int matrix[][] = new int[n1][m1];
+            
+            for(int i = 0; i < n1; i++)
+                for(int j = 0; j < m1; j++)
+                    matrix[i][j] = sc.nextInt();
+
+            Solution ob = new Solution();
+            ob.reverseCol(matrix);
+
+            for(int i = 0; i < n1; i++)
+                for(int j = 0; j < m1; j++)
+                    System.out.print(matrix[i][j] + " ");
+            System.out.println();
+        }
+    }
+}
+
+
+// } Driver Code Ends
+
+
+class Solution
+{
+    //Function to reverse the columns of a matrix.
+    static void reverseCol(int matrix[][])
+    {
+        // code here
+        
+        // my solution
+        int low=0,high=0,cols=matrix[0].length,rows=matrix.length,temp=0;
+        for(int row=0;row<rows;row++){
+            low=0;
+            high=cols-1;
+            while(low<=high){
+                temp=matrix[row][high];
+                matrix[row][high]=matrix[row][low];
+                matrix[row][low]=temp;
+                low++;
+                high--;
+            }
+        }
+        /*
+        // Gfg solution
+        int n1 = matrix.length;
+        int m1 = matrix[0].length;
+        for(int i= 0; i< n1; i++)
+        {
+            for(int j = 0; j < m1/2; j++)
+            {
+                //swapping the elements (element at 1st column with element
+                //at last column, element at 2nd column with element at 
+                //second last column and so on).
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][m1-1-j];
+                matrix[i][m1-1-j]= temp;
+            }
+        }
+        */
+    }
+}
