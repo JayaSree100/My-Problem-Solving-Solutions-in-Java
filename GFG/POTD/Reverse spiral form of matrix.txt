@@ -1,0 +1,85 @@
+//{ Driver Code Starts
+//Initial Template for Java
+import java.io.*;
+import java.util.*;
+
+class GFG{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while(t-- > 0)
+        {
+            String[] input = new String[2]; 
+            input = read.readLine().split(" "); 
+            int R = Integer.parseInt(input[0]); 
+            int C = Integer.parseInt(input[1]); 
+            String s1[] = read.readLine().trim().split("\\s+");
+            int a[][] = new int[R][C];
+            for(int i = 0;i < R*C;i++)
+                a[i/C][i%C] = Integer.parseInt(s1[i]);
+            Solution ob = new Solution();
+            int[] ans = ob.reverseSpiral(R,C,a);
+            for(int i = 0; i < ans.length; i++)
+            {
+                System.out.print(ans[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+class Solution
+{
+    public int[] reverseSpiral(int R, int C, int[][] a)
+    {
+        // code here
+        // first do the spiral and store it in an arraylist 
+        // then reverse it and store it in an array
+       
+        int[]  revSpiral=new int[R*C];
+        // to do he spiral
+        ArrayList<Integer> spiral=new ArrayList<>();
+        
+        int dir=0; // 0 (left) 1(down)  2(right) 3(up) 
+        int top=0, bottom=R-1, right=C-1, left=0;
+        
+        while(top<=bottom && left<=right){
+            
+            if(dir==0){
+                for(int col=left;col<=right;col++){
+                    spiral.add(a[top][col]);
+                }
+                top++;
+            }
+            else if(dir==1){
+                for(int row=top;row<=bottom;row++){
+                    spiral.add(a[row][right]);
+                }
+                right--;
+            }
+            else if(dir ==2){
+                for(int col=right;col>=left;col--){
+                    spiral.add(a[bottom][col]);
+                }
+                bottom--;
+            }
+            else if( dir ==3){
+                for(int row=bottom;row>=top;row--){
+                    spiral.add(a[row][left]);
+                }
+                left++;
+            }
+            dir=(dir+1)%4;
+        }
+        //System.out.println("spiral="+spiral);
+        Collections.reverse(spiral);
+        for(int ind=0;ind<spiral.size();ind++){
+            revSpiral[ind]=spiral.get(ind);
+        }
+        return revSpiral;
+    }
+}
