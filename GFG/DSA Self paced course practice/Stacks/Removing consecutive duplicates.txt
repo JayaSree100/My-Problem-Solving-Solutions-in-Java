@@ -1,0 +1,53 @@
+//{ Driver Code Starts
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//taking the length of the string
+		int t = Integer.parseInt(br.readLine().trim());
+		while(t-->0){
+		    
+		    //taking the string
+		   String str = br.readLine().trim();
+		   
+		   //calling removeConsecutiveDuplicates method of class solve
+		   System.out.println(new Solution().removeConsecutiveDuplicates(str));
+		}
+	}
+}
+// } Driver Code Ends
+
+
+
+
+class Solution
+{
+    //Function to remove consecutive duplicates from given string using Stack.
+    public static String removeConsecutiveDuplicates(String str)
+    {
+        // Your code here
+        // push the first element
+        // then push only if it is not equal to the top of the stack
+        // print the stack elements in reverse order
+        
+        //initialize an empty stack
+        Deque<Character> stack = new ArrayDeque<>();
+        stack.push(str.charAt(0));
+        for(int i=1;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(stack.peek()!=ch){
+                stack.push(ch);
+            }
+            
+        }
+        StringBuilder sb = new StringBuilder(stack.size());
+        while(!stack.isEmpty()){
+            sb.append(stack.pop());
+        }
+        String ans = sb.reverse().toString();
+        return ans;
+    }
+}

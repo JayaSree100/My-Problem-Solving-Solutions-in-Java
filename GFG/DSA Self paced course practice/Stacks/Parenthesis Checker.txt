@@ -1,0 +1,80 @@
+//{ Driver Code Starts
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class Driverclass
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        
+        //Reading total number of testcases
+        int t= sc.nextInt();
+        
+        while(t-- >0)
+        {
+            //reading the string
+            String st = sc.next();
+            
+            //calling ispar method of Paranthesis class 
+            //and printing "balanced" if it returns true
+            //else printing "not balanced"
+            if(new Solution().ispar(st) == true)
+                System.out.println("balanced");
+            else
+                System.out.println("not balanced");
+        
+        }
+    }
+}
+// } Driver Code Ends
+
+
+
+
+class Solution
+{
+    //Function to check if brackets are balanced or not.
+    static boolean ispar(String x)
+    {
+        // add your code here
+        
+        // if opening brackets then push
+        // if closing, peek and compare, if matching, pop
+        
+        //edge cases
+        // if only closing brackets are there and no opening, return false
+        // if after comparing , still stack is not empty, return false
+        
+        // stack
+        Deque<Character> stack = new ArrayDeque<>();
+        for(int i=0;i<x.length();i++){
+            char ch = x.charAt(i);
+            
+            if(ch=='{' || ch=='[' || ch=='('){
+                stack.push(ch);
+            }
+            else{
+                // if string char is closing 
+                if(stack.isEmpty()){
+                    return false;
+                }
+                else if(matching(stack.peek(),ch)){
+                    stack.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return (stack.isEmpty()==true);
+        
+    }
+    public static boolean matching(char a, char b){
+        return ((a=='(' && b==')')||
+                (a=='{' && b=='}')||
+                (a=='[' && b==']')
+            );
+    }
+}
