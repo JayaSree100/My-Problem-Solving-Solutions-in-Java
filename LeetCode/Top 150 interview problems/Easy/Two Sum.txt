@@ -1,0 +1,21 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+        LinkedHashMap<Integer,Integer> map = new LinkedHashMap<>();
+        int[] ans = new int[2];
+        
+        for(int ind=0;ind<nums.length;ind++){
+            if(map.containsKey(target-nums[ind])){
+                
+                ans[0]=map.get(target-nums[ind]);
+                ans[1]=ind;
+                return ans;
+            }
+            else{
+                map.put(nums[ind],ind);
+            }
+        }
+        return ans;
+        
+    }
+}

@@ -1,0 +1,48 @@
+class Solution {
+    public int romanToInt(String s) {
+        
+        int result =0;
+       
+       for(int i=0;i<s.length();i++){
+           int curr = intValue(s.charAt(i));
+           if(i+1<s.length()){
+            int next = intValue(s.charAt(i+1));
+             if(curr>=next){
+               result=result+curr;
+           }
+            else{
+                result=result+next-curr;
+                i++;
+            }
+           }
+           else{
+               result+=curr;
+           }
+            
+       }
+       return result;
+      
+
+       
+    }
+    public int intValue(char ch){
+         // first write the equivalent values of Romans in int
+        switch(ch){
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+        }
+        return -1;
+    }
+}

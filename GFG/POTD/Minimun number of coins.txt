@@ -1,0 +1,65 @@
+//{ Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(in.readLine());
+        while(t-- > 0){
+            int N = Integer.parseInt(in.readLine());
+            
+            Solution ob = new Solution();
+            List<Integer> numbers= new ArrayList<Integer>();
+            numbers = ob.minPartition(N);
+            for(int i: numbers){
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solution{
+    static List<Integer> minPartition(int N)
+    {
+        // code here
+        int[] currency = {2000,500,200,100,50,20,10,5,2,1};
+        
+        // output list
+        List<Integer> reqCurrency = new ArrayList<>(N);
+        
+        
+        
+        // traverse through the given currencies 
+         // until N>0
+        // if curr>N-> skip
+        
+        // if curr< N -> no of coins ( count) = floor(curr/N); add count no of curr to reqCurrency
+        
+        // update N=N%curr;
+        for(int i=0;i<currency.length && N!=0;i++){
+            if(currency[i]<=N){
+                int count=(int)Math.floor(N/currency[i]);
+                //System.out.println(N/currency[i]+" currency[i]="+currency[i]);
+            
+            
+                while(count!=0){
+                    reqCurrency.add(currency[i]);
+                    count--;
+                }
+                N=N%currency[i];
+            }
+        }
+        return reqCurrency;
+       
+        
+    }
+}
